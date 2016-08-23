@@ -7,8 +7,8 @@ User.create!(name:  'mebin',
              password:              'mebinthomas',
              password_confirmation: 'mebinthomas')
 
-=begin
 
+=begin
 99.times do |n|
     name = Faker::Name.name
     email = "example-#{n + 1}@railstutorial.org"
@@ -22,7 +22,10 @@ User.create!(name:  'mebin',
 users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.microposts.create!(content: content) }
+  date = Faker::Lorem.sentence(1)
+  subject = Faker::Lorem.sentence(2)
+  users.each { |user| user.microposts.create!(content: content,
+                                              subject: subject,
+                                              date: date) }
 end
-
 =end

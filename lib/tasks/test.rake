@@ -11,25 +11,24 @@ namespace :daily do
     imap = Net::IMAP.new('imap.gmail.com', 993, true)
     imap.login('rptest47', 'redpanthers')
     imap.select('INBOX')
-    mailIds = imap.search(["ALL"])#(["NOT", "SEEN"])
+    mailIds = imap.search(["NOT", "SEEN"])
     mailIds.each do |id|
       envelope = imap.fetch(id, "ENVELOPE")[0].attr["ENVELOPE"]
       sender = envelope.from[0].mailbox+"@"+envelope.from[0].host
-      if(User.find_by(email:sender))
+      user1 = User.find_by(email:sender)
+      if(user1)
         content = imap.fetch(id,'BODY.PEEK[1]')[0].attr['BODY[1]']
                   .split('<rptest47@gmail.com>')
-                  .first#.strip
-        if(content.length > 50)
+                  .first
+        if(content.length > 5)
           subject = envelope.subject
           if(subject.nil? || subject=='' || subject[0..2]=='Re:')
             subject = Time.now.strftime('%A')
           end
-          puts sender
-          puts "Subject"
-          puts subject
-          puts "Content"
-          puts content
-          puts Time.now.strftime('%A,%d-%b-%Y %H:%M:%S')
+          date = Time.now.strftime('%A,%d-%b-%Y %H:%M:%S')
+          user1.microposts.create!(content: content,
+                                   subject: subject,
+                                   date: date)
         end
       end
     end 
