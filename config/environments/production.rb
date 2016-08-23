@@ -1,22 +1,4 @@
 Rails.application.configure do
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'rptest47@gmail.com'}
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => 'rptest47',
-    :password       => 'redpanthers',
-    :domain         => 'gmail.com',
-    :enable_starttls_auto => true
-  }
-
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and

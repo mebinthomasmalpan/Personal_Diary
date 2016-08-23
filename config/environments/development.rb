@@ -1,22 +1,4 @@
 Rails.application.configure do
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'rptest47@gmail.com'}
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => 'rptest47',
-    :password       => 'redpanthers',
-    :domain         => 'gmail.com',
-    :enable_starttls_auto => true
-  }
-
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -64,4 +46,21 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   :location => '/usr/sbin/sendmail',
+  #   :arguments => '-i -t'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'gmail.com',
+    :user_name            => 'rptest47',
+    :password             => 'redpanthers',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
 end

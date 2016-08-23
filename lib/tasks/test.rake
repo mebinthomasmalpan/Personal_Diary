@@ -1,5 +1,5 @@
 namespace :daily do
-  task :notification do
-      puts ">Test2 task invoked"
+  task :notification  => :environment do
+    UserMailer.welcome_email.deliver!
   end
 end

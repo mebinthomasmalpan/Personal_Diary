@@ -1,12 +1,7 @@
-class UserMailer < ApplicationMailer
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.Notification.subject
-  #
-  def Notification()
-    @greeting = "Hi"
-    mail to: "sameesh.fisat@gmail.com"
+class UserMailer < ActionMailer::Base
+  default :from => "rptest47@gmail.com"
+ 
+  def welcome_email
+    mail(:to => 'sameesh.fisat@gmail.com', :subject => "Welcome")
   end
 end
