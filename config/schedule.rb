@@ -21,6 +21,6 @@
 set :environment, "development"
 #set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-every 1.day, :at => '11:16 AM' do
+every 1.day, :at => '6:00 PM' do
   rake "daily:notification"
 end
