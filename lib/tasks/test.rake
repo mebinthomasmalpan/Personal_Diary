@@ -31,6 +31,7 @@ namespace :daily do
                                    date: date)
         end
       end
+        imap.store(id, "+FLAGS", [:Seen])
     end 
     imap.logout()
     imap.disconnect()
