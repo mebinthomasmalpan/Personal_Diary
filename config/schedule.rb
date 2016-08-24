@@ -25,6 +25,6 @@ every 1.day, :at => '6:00 PM' do
   rake "daily:notification"
 end
 
-every 5.minutes do
+every 1.minutes do
   rake "daily:mailFetch"
 end
